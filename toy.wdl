@@ -104,9 +104,9 @@ task concatenate {
 
     command {
         # get a temporary output filename
-        output_filename=$(mktemp concatenated.XXXX)
+        output_filename=$(mktemp concatenated.XXXX.fastq.gz)
         # concatenate trimmed fastqs to the output file
-        cat ${sep=" " trimmed_fastqs} > $output_filename
+        zcat ${sep=" " trimmed_fastqs} | gzip > $output_filename
     }
 
     output {
